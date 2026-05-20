@@ -1,6 +1,6 @@
-package br.rainfall;
+package br.rainfall.utils;
 
-import br.rainfall.model.RainfallRecord;
+import br.rainfall.rainfall.RainfallRecord;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

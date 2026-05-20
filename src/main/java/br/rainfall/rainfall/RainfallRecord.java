@@ -1,4 +1,4 @@
-package br.rainfall.model;
+package br.rainfall.rainfall;
 
 import lombok.*;
 import java.util.Date;
