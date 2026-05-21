@@ -1,6 +1,6 @@
 package br.rainfall.utils;
 
-import br.rainfall.rainfall.RainfallRecord;
+import br.rainfall.model.RainfallRecord;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -18,7 +18,7 @@ public class ReadCSV {
     private ReadCSV(){}
 
     public static List<RainfallRecord> listCsv() {
-        List<RainfallRecord> records = new ArrayList<>();
+        ArrayList<RainfallRecord> records = new ArrayList<>();
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -48,6 +48,7 @@ public class ReadCSV {
                         Double valor = Double.parseDouble(dados[1].trim());
                         java.util.Date data = sdf.parse(dados[2].trim());
                         int posto = Integer.parseInt(dados[3].trim());
+
                         RainfallRecord record = new RainfallRecord(id, valor, data, posto);
                         records.add(record);
 
@@ -58,6 +59,7 @@ public class ReadCSV {
             }
 
         } catch (Exception e) {
+            System.err.println("Erro ao ler o arquivo CSV: " + e.getMessage());
             return Collections.emptyList();
         }
 
