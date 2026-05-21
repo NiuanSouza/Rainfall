@@ -33,15 +33,41 @@ public class Main {
             System.out.println("\n--------------------------------------------------");
             switch (option) {
                 case 1:
-                    System.out.println("Resultado: " + service.totalRainfallPerMonth());
+                    System.out.print("Por favor digite o ano desejado: ");
+                    try {
+                        option = Integer.parseInt(scanner.nextLine());
+                        System.out.println("Total de chuva por Mês: " + service.totalRainfallPerMonth());
+
+                    } catch (NumberFormatException e) {
+                        System.out.println("Por favor, digite um número válido.");
+                        continue;
+                    }
                     break;
                 case 2:
-                    System.out.println("Maior Dia: " + service.maxDayRainfall());
-                    System.out.println("Menor Dia: " + service.minDayRainfall());
+                    System.out.print("Por favor digite o ano desejado: ");
+                    try {
+                        int year = Integer.parseInt(scanner.nextLine());
+                        System.out.println("Maior Dia: " + service.maxDayRainfall(year));
+                        System.out.println("Menor Dia: " + service.minDayRainfall(year));
+                    } catch (NumberFormatException e) {
+                        System.out.println("Por favor, digite um número válido.");
+                        continue;
+                    }
+
                     break;
                 case 3:
-                    System.out.println("Maior Mês: " + service.maxMonthRainfall());
-                    System.out.println("Menor Mês: " + service.minMonthRainfall());
+
+                    System.out.print("Por favor digite o ano desejado: ");
+                    try {
+                        int year = Integer.parseInt(scanner.nextLine());
+                        System.out.println("Maior Mês: " + service.maxMonthRainfall(year));
+                        System.out.println("Menor Mês: " + service.minMonthRainfall(year));
+                    } catch (NumberFormatException e) {
+                        System.out.println("Por favor, digite um número válido.");
+                        continue;
+                    }
+
+
                     break;
                 case 4:
                     System.out.println("Resultado: " + service.avgYearRainfall());
