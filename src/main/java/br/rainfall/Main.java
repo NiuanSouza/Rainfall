@@ -6,11 +6,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         StaticService service = new StaticService();
-
         Scanner scanner = new Scanner(System.in);
         int option = -1;
 
-        System.out.println("=== SISTEMA DE ANÁLISE DE PLUVIOMETRIA (ACARAÚ - 2025) ===");
+        System.out.println("=== SISTEMA DE ANÁLISE DE PLUVIOMETRIA (FUNCEME) ===");
 
         while (option != 0) {
             System.out.println("\nEscolha uma estatística para visualizar:");
@@ -30,59 +29,46 @@ public class Main {
                 continue;
             }
 
+            if (option == 0) {
+                System.out.println("Encerrando o programa. Até logo!");
+                break;
+            }
+
+            if (option < 1 || option > 6) {
+                System.out.println("Opção inválida! Tente novamente.");
+                continue;
+            }
+
+            System.out.print("Por favor, digite o ano desejado (ex: 2025): ");
+            int year;
+            try {
+                year = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Ano inválido. Operação cancelada.");
+                continue;
+            }
+
             System.out.println("\n--------------------------------------------------");
             switch (option) {
                 case 1:
-                    System.out.print("Por favor digite o ano desejado: ");
-                    try {
-                        option = Integer.parseInt(scanner.nextLine());
-                        System.out.println("Total de chuva por Mês: " + service.totalRainfallPerMonth());
-
-                    } catch (NumberFormatException e) {
-                        System.out.println("Por favor, digite um número válido.");
-                        continue;
-                    }
+                    System.out.println(service.totalRainfallPerMonth(year));
                     break;
                 case 2:
-                    System.out.print("Por favor digite o ano desejado: ");
-                    try {
-                        int year = Integer.parseInt(scanner.nextLine());
-                        System.out.println("Maior Dia: " + service.maxDayRainfall(year));
-                        System.out.println("Menor Dia: " + service.minDayRainfall(year));
-                    } catch (NumberFormatException e) {
-                        System.out.println("Por favor, digite um número válido.");
-                        continue;
-                    }
-
+                    System.out.println("Maior Dia: " + service.maxDayRainfall(year));
+                    System.out.println("Menor Dia: " + service.minDayRainfall(year));
                     break;
                 case 3:
-
-                    System.out.print("Por favor digite o ano desejado: ");
-                    try {
-                        int year = Integer.parseInt(scanner.nextLine());
-                        System.out.println("Maior Mês: " + service.maxMonthRainfall(year));
-                        System.out.println("Menor Mês: " + service.minMonthRainfall(year));
-                    } catch (NumberFormatException e) {
-                        System.out.println("Por favor, digite um número válido.");
-                        continue;
-                    }
-
-
+                    System.out.println("Maior Mês: " + service.maxMonthRainfall(year));
+                    System.out.println("Menor Mês: " + service.minMonthRainfall(year));
                     break;
                 case 4:
-                    System.out.println("Resultado: " + service.avgYearRainfall());
+                    System.out.println("Média Anual Diária: " + service.avgYearRainfall(year));
                     break;
                 case 5:
-                    System.out.println("Resultado: " + service.avgMonthRainfall());
+                    System.out.println(service.avgMonthRainfall(year));
                     break;
                 case 6:
-                    System.out.println("Resultado: " + service.topTenDays());
-                    break;
-                case 0:
-                    System.out.println("Encerrando o programa. Até logo!");
-                    break;
-                default:
-                    System.out.println("Opção inválida! Tente novamente.");
+                    System.out.println(service.topTenDays(year));
                     break;
             }
             System.out.println("--------------------------------------------------");
